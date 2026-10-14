@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS — A Nova Saga de B!Frost! | Temporada 1</title>
+<style>
+  :root {
+    --bg: #0a0e17;
+    --bg-card: #111827;
+    --border: #1e293b;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-soft: #0ea5e9;
+    --highlight: #7dd3fc;
+    --chapter: #38bdf8;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 1.05rem;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10, 14, 23, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  nav .logo {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  nav .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  nav .nav-links a:hover {
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.1);
+  }
+
+  /* Main container */
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5.5rem 1.5rem 4rem;
+  }
+
+  /* Cover */
+  .cover {
+    text-align: center;
+    padding: 4rem 1rem 5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .cover .series {
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .cover h1 {
+    font-size: clamp(2.4rem, 8vw, 3.6rem);
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.6rem;
+  }
+
+  .cover .subtitle {
+    font-size: 1.15rem;
+    color: var(--highlight);
+    margin-bottom: 1.8rem;
+    font-weight: 500;
+  }
+
+  .cover .season {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+
+  .cover .after {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cover .edition {
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    display: inline-block;
+  }
+
+  /* Chapters */
+  .chapter {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .chapter:last-of-type {
+    border-bottom: none;
+  }
+
+  .chapter-header {
+    margin-bottom: 2rem;
+  }
+
+  .chapter-number {
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin-bottom: 0.4rem;
+  }
+
+  .chapter h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--chapter);
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+  }
+
+  /* Body text */
+  .chapter p {
+    margin-bottom: 1.15rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .chapter p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dialogue */
+  .dialogue {
+    color: var(--highlight);
+    font-style: italic;
+    margin: 1.2rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid rgba(56, 189, 248, 0.35);
+  }
+
+  /* End mark */
+  .fim {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2.5rem 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .fim p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem 3rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+
+  footer span {
+    color: var(--accent);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.6rem 1rem;
+    }
+    nav .nav-links {
+      justify-content: flex-start;
+    }
+    main {
+      padding: 6.5rem 1.1rem 3rem;
+    }
+    .cover {
+      padding: 2.5rem 0.5rem 3.5rem;
+    }
+  }
+
+  /* Print */
+  @media print {
+    nav { display: none; }
+    main { padding-top: 1rem; }
+    .chapter { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#cover" class="logo">NEXUS / B!FROST!</a>
+  <div class="nav-links">
+    <a href="#cap1">I</a>
+    <a href="#cap2">II</a>
+    <a href="#cap3">III</a>
+    <a href="#cap4">IV</a>
+    <a href="#cap5">V</a>
+    <a href="#cap6">VI</a>
+    <a href="#cap7">VII</a>
+    <a href="#cap8">VIII</a>
+    <a href="#cap9">IX</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- COVER -->
+  <section id="cover" class="cover">
+    <p class="series">NEXUS / B!FROST!</p>
+    <h1>NEXUS</h1>
+    <p class="subtitle">A NOVA SAGA DE B!FROST!</p>
+    <p class="season">TEMPORADA 1</p>
+    <p class="after">Depois de A New Dawn</p>
+    <p class="edition">EDIÇÃO EXPANDIDA</p>
+  </section>
+
+  <!-- CAPÍTULO I -->
+  <section id="cap1" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">Capítulo I</p>
+      <h2>O Festival de Nexus</h2>
+    </div>
+
+    <p>O universo transcrito por Steel!Frost! finalmente alcançara seu desfecho. Depois da vitória que marcou A New Dawn, uma nova realidade se abriu além das páginas concluídas: Nexus. B!Frost! atravessou a fronteira entre universos e surgiu no meio de um festival. Luzes azuis e douradas cruzavam as ruas, bandeirolas tremulavam sobre as barracas, e a música se misturava ao barulho de uma multidão que parecia não ter motivo para temer o amanhã.</p>
+
+    <p>Para alguém que acabara de deixar para trás um universo encerrado por outra pessoa, aquela alegria parecia quase irreal. A melancolia permanecia escondida atrás de mudanças bruscas de humor, expressões improvisadas e uma aparência de quem preferia não chamar atenção. No meio do festival, duas figuras chamaram sua atenção: um humano de olhar perdido e postura surpreendentemente protagonista, e um dragão negro de olhos roxos cuja presença era impossível de ignorar.</p>
+
+    <p class="dialogue">— Eu sou Robert... pelo menos, é o nome que ainda consigo lembrar.</p>
+
+    <p>Robert sofria de amnésia. Havia lacunas em sua memória grandes o bastante para engolir anos inteiros, mas carregava a impressão de alguém que acabaria no centro dos acontecimentos.</p>
+
+    <p class="dialogue">— Akira the God of the Dragons. Dragão negro, olhos roxos, excelente companhia e, segundo rumores, péssimo em ir embora de uma festa cedo.</p>
+
+    <p>Akira falava com a leveza de quem já conhecia metade das pessoas no festival. Era festeiro, provocador e cheio de energia — mas havia inteligência por trás do sorriso. Seus olhos observavam mais do que sua postura descontraída deixava transparecer.</p>
+
+    <p class="dialogue">— E você? Como devemos chamar nosso visitante misterioso?</p>
+
+    <p>A apresentação foi simples, quase comum. Robert demonstrou curiosidade; Akira, entusiasmo. Em pouco tempo, os dois passaram a tratar B!Frost! como alguém que já fazia parte do grupo. Sem cerimônia, Akira declarou que aquele era seu novo melhor amigo.</p>
+
+    <p class="dialogue">— Pronto. Agora você não pode desaparecer sem pelo menos me avisar. É uma regra oficial do festival.</p>
+
+    <p>Robert soltou uma risada discreta. Por alguns instantes, Nexus pareceu um lugar onde ninguém precisava explicar de onde vinha para ter permissão de ficar.</p>
+
+    <p>A lanchonete do festival era uma construção de madeira escura decorada com lâmpadas azuis. O aroma de comida recém-preparada escapava pelas janelas, misturando-se ao cheiro doce das sobremesas e ao tempero das frituras. Akira entrou como se fosse o dono do estabelecimento. Examinou o cardápio com uma seriedade teatral, como se estivesse diante de um artefato ancestral.</p>
+
+    <p class="dialogue">— Certo. Quero experimentar metade disso aqui. Talvez mais.</p>
+
+    <p>O pedido cresceu depressa. Akira apontou para pratos, lanches, acompanhamentos e bebidas, fazendo comentários sobre cada opção. A quantidade era absurda, mas ele parecia disposto a descobrir se o estômago de um dragão tinha limites.</p>
+
+    <p class="dialogue">— Se vamos comemorar uma amizade nova, precisamos de uma refeição digna de uma lenda.</p>
+
+    <p>B!Frost! era vegano. Enquanto o cardápio oferecia uma variedade de pratos, sua escolha foi um único brócolis preparado de maneira tão peculiar que parecia uma coxinha: dourado por fora, com formato de salgado de festival e aparência completamente enganosa. A diferença entre o banquete de Akira e o brócolis solitário era tão absurda que a mesa parecia uma piada cuidadosamente montada.</p>
+
+    <p class="dialogue">— Isso é um brócolis? Eu juro que, de longe, parecia uma coxinha.</p>
+
+    <p>Akira inclinou a cabeça, estudando a iguaria com interesse genuíno. Não zombou da escolha nem tentou convencer o novo amigo a comer outra coisa. Apenas aceitou a particularidade com a mesma facilidade com que aceitava quase tudo.</p>
+
+    <p class="dialogue">— Respeito. Cada um tem seu prato lendário.</p>
+
+    <p>Robert observou os dois, ainda tentando entender por que aquela cena simples lhe parecia familiar. Uma sensação atravessou sua mente — a lembrança de uma voz, uma silhueta ou talvez apenas um sonho antigo. Quando tentou agarrá-la, ela desapareceu. Do lado de fora, o festival continuava brilhando. Mas, longe da música e das barracas, outras pessoas já se moviam para transformar aquela noite em algo muito menos inocente.</p>
+  </section>
+
+  <!-- CAPÍTULO II -->
+  <section id="cap2" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">Capítulo II</p>
+      <h2>O Golpe, a Fuga e o Abraço</h2>
+    </div>
+
+    <p>A visão mudou para um distrito afastado, onde o som dos motores cortava o céu noturno. Blood Soldier observava a cidade de dentro de um helicóptero. Seu equipamento escuro, a postura imóvel e o olhar frio davam a impressão de um mercenário acostumado a atravessar situações demais para se impressionar com ameaças comuns. Sob o helicóptero, equipes coordenadas preparavam uma operação contra o presidente. A primeira ofensiva seria política, pública e difícil de conter.</p>
+
+    <p>Compartimentos foram abertos. Pacotes de panfletos foram lançados ao vento, espalhando-se sobre as ruas como uma tempestade de papel. As folhas acusavam o presidente de corrupção e apresentavam alegações destinadas a provocar revolta antes que alguém pudesse verificar os fatos. Os helicópteros voavam baixo; a operação tentava confundir testemunhas e atrasar qualquer resposta organizada.</p>
+
+    <p>Blood Soldier acompanhou os panfletos descendo sobre Nexus. Para ele, aquilo era uma missão: desestabilizar a confiança pública, isolar o presidente e fazer a cidade acreditar numa história antes que a verdade pudesse alcançá-la.</p>
+
+    <p class="dialogue">— A cidade vai acordar com uma acusação em cada esquina.</p>
+
+    <p>No festival, B!Frost! ouviu o bastante para acreditar que o presidente estava sendo injustamente difamado. Não havia estratégia política por trás de sua reação, nem plano para conquistar influência. Havia apenas inocência: a vontade de impedir que alguém fosse condenado por uma mentira e, de algum modo, impressionar Akira.</p>
+
+    <p>A transformação começou como uma decisão desesperadamente sincera. A presença de B!Frost! mudou; a silhueta assumiu a imponência de B!Vasto Lorde!, e uma energia sombria ergueu-se ao redor dele. A forma era aterradora, majestosa e muito maior do que a figura tímida que aparecera no festival.</p>
+
+    <p class="dialogue">— Eu vou provar que essas acusações não devem ser aceitas sem a verdade.</p>
+
+    <p>Lucky, um espírito de luz, apareceu diante dele. Sua luminosidade era serena, quase delicada — o que tornava ainda mais inquietante a diferença entre sua aparência e a força que carregava.</p>
+
+    <p class="dialogue">— Você está tentando resolver uma acusação com poder bruto.</p>
+
+    <p>A tensão cresceu ao redor dos dois. A luz de Lucky refletiu sobre a forma de B!Vasto Lorde!, e as sombras do festival se alongaram pelo chão. Lucky se moveu. Um único golpe atravessou a distância entre luz e escuridão. O impacto foi preciso, direto e avassalador — tão rápido que o próprio festival pareceu perder um instante.</p>
+
+    <p>B!Vasto Lorde! foi derrotado com apenas um golpe.</p>
+
+    <p>A pressão que havia tomado a rua se dissipou. Não houve uma longa disputa para decidir quem era mais forte. O resultado ficou claro imediatamente: Lucky possuía poder suficiente para encerrar o confronto antes que ele realmente começasse. Os panfletos continuaram caindo do céu. A acusação contra o presidente não havia sido provada nem desmentida por aquela luta.</p>
+
+    <p>B!Frost! voltou a si abalado. A derrota não foi apenas um golpe contra sua forma monstruosa. O que o assustou foi a sensação de ter chegado perto demais de algo que não sabia controlar. Ele fugiu antes que os outros pudessem alcançá-lo, afastando-se das luzes do festival. Não queria que vissem seu rosto, nem que percebessem o medo que crescia por trás de sua expressão.</p>
+
+    <p>A fuga não era uma ameaça nem uma tentativa de punir alguém. Era um aviso secreto e gentil, embora ninguém o tivesse compreendido ainda: B!Frost! temia estar perdendo a sanidade. A forma Vasto Lorde! havia surgido por uma intenção inocente, mas a experiência o fizera temer o que poderia acontecer se perdesse o controle de si mesmo.</p>
+
+    <p>Akira percebeu sua ausência. Robert também. Lucky, que havia vencido o combate, não tratou a fuga como covardia. Os três deixaram o festival e procuraram B!Frost! sem transformar a busca em uma caçada. Quando finalmente o encontraram, ele estava tomado pelo medo e não parecia saber como explicar o que acabara de acontecer.</p>
+
+    <p class="dialogue">— B!Frost!, somos nós — disse Robert, aproximando-se com cuidado.</p>
+
+    <p>Akira não exigiu explicações. Não pediu que B!Frost! voltasse à luta, não fez piada com a derrota e não tentou arrancar dele uma promessa. Apenas se aproximou e o abraçou. Robert se juntou ao abraço; Lucky permaneceu perto, oferecendo sua presença tranquila.</p>
+
+    <p>O contato foi simples. Não apagou o medo nem resolveu de imediato o que se passava na mente de B!Frost!, mas mostrou que ele não precisava enfrentar aquele instante sozinho. O dragão negro manteve os braços ao redor dele sem exigir que parasse de tremer.</p>
+
+    <p class="dialogue">— Você não precisa provar nada para ficar com a gente — disse Akira.</p>
+
+    <p>B!Frost! não encontrou uma resposta pronta. Por um momento, não tentou parecer corajoso, divertido ou misterioso. Permitiu-se apenas ficar ali, amparado pelos amigos que havia encontrado em Nexus. A noite continuava cheia de panfletos, acusações e perguntas sem resposta, mas o grupo não o abandonou.</p>
+
+    <p>A conspiração contra o presidente permanecia ativa, e a derrota de B!Vasto Lorde! não tinha resolvido nada politicamente. Ainda assim, para B!Frost!, aquele abraço foi a primeira coisa naquela noite que não exigia que ele se transformasse em outra pessoa.</p>
+  </section>
+
+  <!-- CAPÍTULO III -->
+  <section id="cap3" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">Capítulo III</p>
+      <h2>Uma Promessa Entre Dois</h2>
+    </div>
+
+    <p>Depois daquela noite, a relação entre Akira e B!Frost! mudou sem que nenhum dos dois precisasse anunciar o instante exato em que isso aconteceu. A amizade nascera no festival, entre luzes azuis, uma refeição exagerada e um brócolis que parecia uma coxinha. O vínculo cresceu depois da fuga, quando Akira se aproximou sem cobrar explicações e abraçou B!Frost! em vez de exigir que ele fingisse estar bem.</p>
+
+    <p>B!Frost! ainda tinha mudanças bruscas de humor. Às vezes parecia disposto a acompanhar qualquer brincadeira; em outros momentos, recolhia-se em silêncio, como se precisasse observar os próprios pensamentos antes de confiar neles. Akira não tratou essa alternância como uma ofensa. Aprendeu a reconhecer que o silêncio não significava necessariamente rejeição e que uma resposta curta não era sempre um convite para insistir.</p>
+
+    <p>Robert continuava por perto. Sua amnésia ainda deixava espaços vazios, mas ele percebia a aproximação entre os dois com uma curiosidade serena. Não precisava conhecer cada detalhe do passado de B!Frost! para notar que Akira conseguia fazê-lo baixar a guarda. Tampouco precisava recuperar todas as suas próprias lembranças para compreender que aquela relação tinha se tornado importante para o grupo.</p>
+
+    <p>Akira, por sua vez, não deixou de ser festeiro. Continuava gostando de celebrações e de transformar situações comuns em acontecimentos grandiosos. A diferença era que, agora, procurava B!Frost! para compartilhar essas coisas. A alegria do dragão não dependia de fazer o outro acompanhar seu ritmo a qualquer custo; ele passou a oferecer companhia sem transformar cada convite em uma obrigação.</p>
+
+    <p>B!Frost! descobriu que podia estar ao lado de Akira sem apresentar uma forma assustadora, sem derrotar alguém e sem demonstrar que era capaz de resolver todos os problemas de Nexus. A lembrança do golpe de Lucky ainda existia, assim como o receio de perder a sanidade, mas o afeto não vinha condicionado a uma demonstração de poder.</p>
+
+    <p class="dialogue">— Você continua sendo meu melhor amigo — disse Akira numa das conversas que tiveram depois do festival.</p>
+
+    <p>A frase carregava a mesma espontaneidade da primeira noite. Só que, agora, B!Frost! já não a recebia como uma brincadeira passageira. Havia cuidado por trás dela, e havia uma confiança que se construíra aos poucos, através de gestos que não precisavam ser espetaculares.</p>
+
+    <p>A amizade se transformou em amor. Não houve necessidade de inventar um grande evento para explicar a mudança: ela se manifestou na vontade de permanecer juntos, na tranquilidade de compartilhar o silêncio e na escolha de não fugir quando a vulnerabilidade aparecia. Akira e B!Frost! se apaixonaram.</p>
+
+    <p>O dragão continuou sendo alguém de energia expansiva; B!Frost! continuou sendo melancólico, mesmo quando tentava esconder isso. Eles não se tornaram iguais. A relação ganhou significado justamente porque os dois podiam continuar diferentes, sem exigir que o outro abandonasse aquilo que era.</p>
+
+    <p>Robert acompanhou a aproximação com a discrição de quem reconhecia estar presenciando algo importante. Sua própria história continuava incompleta, mas a felicidade dos amigos não dependia de ele solucionar a amnésia. O grupo podia continuar existindo mesmo com perguntas em aberto.</p>
+
+    <p>Quando Akira e B!Frost! decidiram se casar, a decisão não surgiu como uma maneira de apagar os problemas anteriores. Não foi uma promessa de que o medo nunca mais voltaria, nem uma declaração de que toda ameaça seria vencida. Foi a escolha de continuar juntos mesmo sabendo que ainda existiam coisas que não compreendiam por completo.</p>
+
+    <p>A celebração marcou essa escolha. Akira e B!Frost! se casaram, firmando o vínculo que havia começado no festival de Nexus. A história dos dois não exigia que B!Frost! se tornasse invulnerável, nem que Akira deixasse de ser quem era. O casamento reconhecia que o afeto podia existir ao lado das fragilidades, sem transformá-las em vergonha.</p>
+
+    <p>B!Frost! não precisou apresentar a forma Vasto Lorde! para merecer aquele compromisso. Akira conhecia o medo que havia seguido a derrota e não o reduzia àquela transformação. Para ele, B!Frost! não era somente a criatura sombria que surgira durante o confronto: era também o companheiro que havia conhecido no festival, o amigo que escolhera ficar e a pessoa por quem se apaixonara.</p>
+
+    <p>A vida em Nexus prosseguiu, com suas celebrações e seus perigos. A conspiração contra o presidente não desapareceu simplesmente porque os dois se casaram, e as questões relacionadas ao passado de B!Frost! não foram resolvidas por uma cerimônia. Mas o casal já não precisava fingir que o futuro seria simples para decidir enfrentá-lo lado a lado.</p>
+  </section>
+
+  <!-- CAPÍTULO IV -->
+  <section id="cap4" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">Capítulo IV</p>
+      <h2>O Hydra Que Veio de Outra Linha</h2>
+    </div>
+
+    <p>B!Frost! foi confrontado por Hydra!Frost!, o Hydra pertencente à linha temporal de True!Frost!. Era importante distinguir aquela figura de B!Hydra!: não era B!Hydra!, mas Hydra!Frost! ligado a True!Frost! e à Delta Timeline.</p>
+
+    <p>O encontro colocou diante de B!Frost! uma presença que carregava referências a acontecimentos de outra continuidade. A diferença entre as linhas temporais não era um detalhe irrelevante. A história de B!Frost! estava ligada ao universo de A New Dawn, enquanto a trajetória de True!Frost! e Hydra!Frost! pertencia a uma Delta Timeline situada em 2023/2024. A New Dawn, por sua vez, passava-se em 2026.</p>
+
+    <p>Hydra!Frost! não se limitou a confrontar B!Frost! acordado. Ele o fez desmaiar, levando o confronto para os sonhos. Ali, provocou B!Frost! com a lembrança de ter destruído A New Dawn junto de Steel!Frost!, a fim de trazer um True!Leafy! que nem sequer era o Leafy de B!Frost!.</p>
+
+    <p>A acusação tinha a intenção de ferir. O sonho transformou a diferença entre as continuidades em um instrumento de provocação: um acontecimento associado a outra linha temporal era apresentado como motivo para humilhar B!Frost!, como se as identidades e os vínculos de uma realidade pudessem ser trocados pelos de outra sem consequência.</p>
+
+    <p class="dialogue">— Você sabe que aquele nem era o Leafy do seu mundo — era a provocação que ecoava no sonho.</p>
+
+    <p>A cena não apagava o que B!Frost! sabia sobre sua própria história. Em vez disso, colocava as versões e as datas em colisão, tentando fazer com que ele carregasse a culpa por acontecimentos ligados a outra continuidade. A New Dawn ocorrera em 2026; a Delta Timeline de True!Frost! e Hydra!Frost! situava-se em 2023/2024. Essa diferença temporal era parte essencial da separação entre as histórias.</p>
+
+    <p>No sonho, B!Frost! não tinha como transformar a provocação em uma discussão clara. Estava inconsciente, submetido ao cenário criado pelo confronto, enquanto Hydra!Frost! insistia na ferida ligada a Steel!Frost!, A New Dawn e o True!Leafy! que não correspondia ao Leafy de B!Frost!. A provocação buscava fazer a lembrança parecer uma condenação pessoal.</p>
+
+    <p>O confronto também evidenciava que os nomes semelhantes não significavam identidades intercambiáveis. Hydra!Frost! não era B!Hydra!. A distinção precisava permanecer nítida, assim como a separação entre a timeline de B!Frost! e a Delta Timeline relacionada a True!Frost!. Confundir essas continuidades apagaria justamente o conflito que Hydra!Frost! usava para provocar seu adversário.</p>
+
+    <p>A lembrança de A New Dawn era especialmente dolorosa porque se tratava do universo transcrito por Steel!Frost!, cujo desfecho havia precedido a chegada de B!Frost! a Nexus. Agora, essa história retornava não como um cenário distante, mas como a matéria da provocação de Hydra!Frost!. O passado era convocado para desorientar B!Frost! e fazê-lo duvidar de como deveria interpretar acontecimentos de outra linha.</p>
+
+    <p>B!Frost! precisava despertar daquele confronto sem aceitar que a provocação definisse sua identidade. A lembrança de sua própria jornada em Nexus — o festival, a derrota, a fuga, os abraços e o casamento com Akira — continuava sendo parte da sua história. O ataque de Hydra!Frost! tentava arrastá-lo para uma disputa de memórias e continuidades, mas não transformava automaticamente os acontecimentos de outra timeline em acontecimentos de sua própria vida.</p>
+
+    <p>A confrontação deixou clara a separação entre as versões e as linhas temporais. Hydra!Frost! era o Hydra de True!Frost!, não B!Hydra!. A New Dawn situava-se em 2026; a Delta Timeline de True!Frost! e Hydra!Frost! em 2023/2024. E a provocação sobre Steel!Frost! e o True!Leafy! que não era o Leafy de B!Frost! permaneceu como o centro emocional daquele ataque nos sonhos.</p>
+
+    <p>O confronto não apagou o vínculo entre Akira e B!Frost!, mas trouxe outra ameaça para perto deles: a possibilidade de que as histórias de universos diferentes fossem usadas como arma psicológica. B!Frost! tinha sido confrontado não apenas por uma figura chamada Hydra, mas por alguém que conhecia uma versão de acontecimentos capaz de fazê-lo duvidar de si mesmo.</p>
+  </section>
+
+  <!-- CAPÍTULO V -->
+  <section id="cap5" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">Capítulo V</p>
+      <h2>A Luz, o Grudge Virus e o Retorno</h2>
+    </div>
+
+    <p>Hydra tentou possuir Lucky, o espírito de luz que havia derrotado B!Vasto Lorde! com um único golpe. A tentativa levou o conflito até uma entidade cuja própria presença estava ligada à luz que impedira aquela batalha de continuar. A ameaça não dizia respeito apenas a vencer outro adversário: significava tentar tomar para si o corpo e os poderes de Lucky.</p>
+
+    <p>A Deusa dos Espíritos interferiu. Sua intervenção interrompeu a tentativa de posse e mudou o rumo do acontecimento. Em vez de continuar a luta até destruir o que restava da vontade de Lucky, Hydra chegou ao arrependimento. Ele devolveu os poderes de Lucky, desfazendo a apropriação que havia tentado impor.</p>
+
+    <p>O retorno dos poderes não encerrou tudo por si só. Hydra ainda estava ligado ao Grudge Virus, e a negatividade que acompanhava essa condição não desapareceria apenas porque ele havia recuado. Lucky, agora com seus poderes de volta, ajudou a curá-lo do Grudge Virus. A cura marcou uma mudança fundamental: em vez de permanecer preso à influência que o havia consumido, Hydra pôde retornar a Apogeu, o Mew azul.</p>
+
+    <p>O retorno a Apogeu não apagou a sequência de ações anteriores. A tentativa de possuir Lucky, a intervenção da Deusa dos Espíritos, o arrependimento e a devolução dos poderes continuavam sendo partes da mesma história. A cura representou uma mudança de condição, não a negação do que havia acontecido.</p>
+
+    <p>Moon!Frost! estava ajudando Lucky durante esses acontecimentos. Sua participação a colocou perto do processo de recuperação e do retorno de Apogeu. Ao acompanhar a cura, Moon!Frost! perdeu o ódio que sentia por Apogeu. O sentimento que antes os separava deixou de definir sua relação, abrindo espaço para uma mudança que não dependia de fingir que o conflito nunca existira.</p>
+
+    <p>Lucky não limitou sua resposta a restaurar os poderes e afastar a ameaça. Ao final desses acontecimentos, adotou Apogeu e Moon!Frost!. Os dois passaram a estar ligados a Lucky por esse novo vínculo, depois da tentativa de posse, da cura e da transformação dos sentimentos de Moon!Frost!.</p>
+
+    <p>A adoção não alterava o passado nem transformava automaticamente todas as consequências em algo simples. Ela oferecia um novo ponto de partida depois de uma sequência marcada por conflito e recuperação. Apogeu havia retornado à sua forma de Mew azul; Moon!Frost! já não alimentava o mesmo ódio por ele; e Lucky passava a ser responsável por ambos como seus filhos adotivos.</p>
+
+    <p>Para Lucky, o episódio também retomava a importância de sua própria identidade. Ele havia derrotado B!Vasto Lorde! sem prolongar a luta, e depois se tornara alvo da tentativa de posse de Hydra. A interferência da Deusa dos Espíritos impedira que a situação seguisse adiante, e a devolução dos poderes permitira que Lucky ajudasse na cura. A luz não era apenas uma força capaz de vencer um adversário; era também parte da recuperação que se seguiu ao conflito.</p>
+
+    <p>Apogeu não retornou como se nada tivesse acontecido. O arrependimento, a devolução dos poderes e a cura do Grudge Virus compunham o caminho de volta. A mudança não precisava ser apresentada como uma vitória sem custo, mas como uma sequência de decisões: parar de tentar possuir Lucky, devolver aquilo que havia tomado e aceitar a cura que o espírito de luz ofereceu.</p>
+
+    <p>Moon!Frost! também mudou sem que fosse necessário apagar a razão pela qual sentira ódio antes. Ajudar Lucky e presenciar a recuperação de Apogeu alteraram sua relação com ele. A partir dali, os dois seriam adotados por Lucky, um gesto que os reunia sem exigir que tivessem vivido a mesma experiência ou chegado ao mesmo ponto pelo mesmo caminho.</p>
+
+    <p>O Grudge Virus continuava importante para a história porque a cura estabelecia uma diferença entre estar ligado à sua influência e conseguir se libertar dela. Apogeu não permaneceu definido apenas pelo período em que esteve sob essa condição. Seu retorno como Mew azul mostrava que o arco não terminava na corrupção: havia também a possibilidade de recuperação, arrependimento e reconstrução de vínculos.</p>
+
+    <p>Ao final, Lucky adotou Apogeu e Moon!Frost!. A nova família não apagava a tensão que a precedera, mas dava aos dois um lugar depois dela. Apogeu retornava como o Mew azul, Moon!Frost! já não carregava o mesmo ódio, e Lucky deixava de ser apenas o espírito de luz que havia vencido B!Vasto Lorde!: tornava-se também aquele que acolhia os dois após o conflito.</p>
+  </section>
+
+  <!-- CAPÍTULO VI -->
+  <section id="cap6" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">Capítulo VI</p>
+      <h2>O Torneio: Um Duelo Romântico</h2>
+    </div>
+
+    <p>O treinamento para o torneio colocou Akira e B!Frost! diante de um desafio diferente dos conflitos que haviam marcado sua chegada a Nexus. Dessa vez, os dois seriam adversários. O confronto, porém, começou longe de qualquer hostilidade. Havia entre eles a intimidade de quem se apaixonara e se casara, e essa proximidade transformou a preparação em algo que se parecia mais com uma brincadeira compartilhada do que com uma disputa destinada a humilhar alguém.</p>
+
+    <p>Akira continuava sendo o dragão negro de olhos roxos que transformava ocasiões comuns em eventos memoráveis. B!Frost! permanecia com seu jeito melancólico e suas mudanças de humor, mas podia se permitir momentos de leveza ao lado do companheiro. O treinamento começou como uma luta fofa e romântica, em que cada movimento carregava a consciência de que estavam enfrentando alguém amado.</p>
+
+    <p>O torneio não apagava o que B!Frost! sentira depois da derrota como B!Vasto Lorde!. O receio de perder a sanidade ainda era uma lembrança importante. Por isso, a luta tinha uma fronteira delicada: havia espaço para a brincadeira, para a proximidade e para a disputa, mas também era necessário reconhecer que o instinto de combate podia mudar o tom de tudo.</p>
+
+    <p>Akira e B!Frost! se enfrentaram sem transformar o carinho em fraqueza. A luta seguia como uma troca entre dois participantes que conheciam a importância um do outro. Não era necessário declarar um vencedor a cada movimento, nem transformar cada golpe em sinal de rancor. O vínculo entre eles continuava presente enquanto o treinamento avançava.</p>
+
+    <p>Então B!Frost! foi dominado pelo instinto assassino. A mudança interrompeu a leveza do confronto e fez com que o treinamento deixasse de parecer apenas uma disputa romântica. O perigo não vinha de uma decisão deliberada de destruir Akira, mas da perda de domínio que transformou a luta. A memória do medo de enlouquecer retornava com uma intensidade que não podia ser ignorada.</p>
+
+    <p>Akira precisou enfrentar a mudança sem esquecer quem estava diante dele. O adversário naquele instante era seu marido, a mesma pessoa que havia fugido aterrorizada depois de ser derrotada por Lucky. A situação exigia que o combate continuasse sem que a violência se tornasse uma sentença final. A presença do instinto assassino ameaçava o controle da luta, mas não determinava que alguém tivesse de morrer.</p>
+
+    <p>O treinamento seguiu sob essa tensão. O que havia começado como uma luta fofa e romântica tornara-se uma prova de resistência e contenção. A diferença entre os dois momentos não apagava a ternura inicial; fazia com que ela fosse colocada à prova diante de algo perigoso. Akira e B!Frost! continuavam no torneio, mas precisavam atravessar a luta sem deixar que a mudança de B!Frost! decidisse tudo por eles.</p>
+
+    <p>Ninguém morreu. Esse resultado era essencial. O instinto assassino havia dominado B!Frost!, e a luta perdera parte da leveza que a caracterizava no início, mas o confronto não terminou com a morte de Akira ou de B!Frost!. A batalha preservou a possibilidade de que os dois continuassem juntos depois do torneio, sem converter o treinamento em uma tragédia irreversível.</p>
+
+    <p>O acontecimento não ofereceu uma solução definitiva para o medo de B!Frost!. Ele mostrou que o risco ainda existia, mesmo em um ambiente de confiança e afeto. O casamento não tornava o personagem imune a seus próprios impulsos, assim como o amor de Akira não significava que ele pudesse controlar tudo o que acontecia com o companheiro. O que os mantinha ligados era a escolha de atravessar a dificuldade sem abandonar a relação.</p>
+
+    <p>A história de Nexus continuava reunindo conflitos diferentes: a conspiração contra o presidente, a recuperação de Apogeu, a mudança de Moon!Frost! e a presença de forças que poderiam interferir no torneio. O duelo entre Akira e B!Frost! era uma parte dessa sequência, não uma interrupção dos acontecimentos anteriores. Ele mostrava que até mesmo uma relação amorosa podia ser colocada diante de um risco real.</p>
+
+    <p>A luta terminou sem mortes. O resultado não apagava a intensidade do confronto, mas preservava aquilo que o torneio não precisava destruir: a vida dos participantes e o vínculo entre Akira e B!Frost!. A lembrança do início romântico permaneceu ao lado da lembrança do instinto assassino, duas partes do mesmo combate.</p>
+
+    <p>Outro perigo, porém, se aproximava de Robert. Lucky seria possuído por Chara e quase o mataria. O torneio, que já havia revelado o risco do instinto assassino de B!Frost!, passaria a mostrar outra forma de perda de controle. O fato de ninguém ter morrido no duelo de Akira e B!Frost! não significava que os próximos confrontos estariam livres de ameaça.</p>
+  </section>
+
+  <!-- CAPÍTULO VII -->
+  <section id="cap7" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">Capítulo VII</p>
+      <h2>Apogeu e Blood Soldier</h2>
+    </div>
+
+    <p>A conspiração contra o presidente continuava ligada à figura de Blood Soldier. Os panfletos lançados sobre Nexus haviam tentado transformar acusações em verdade pela repetição, espalhando suspeitas antes que as pessoas pudessem verificar os fatos. Agora, Apogeu se encontrava diante de Blood Soldier, e o confronto não seria decidido apenas por força.</p>
+
+    <p>Apogeu, o Mew azul que havia retornado depois da cura do Grudge Virus, enfrentou o soldado carregando uma abordagem diferente. Em vez de responder somente com violência, trouxe para o confronto as memórias felizes de Blood Soldier. A intenção era fazer com que o mercenário entrasse em contato com lembranças capazes de despertar algo que a missão e a postura fria haviam mantido afastado.</p>
+
+    <p>Blood Soldier estava acostumado a agir como alguém que executava uma operação. A conspiração contra o presidente exigia que ele participasse de um plano de desestabilização, e os panfletos faziam parte dessa estratégia. A missão reduzia pessoas e acontecimentos a objetivos. Apogeu, porém, não tratou o soldado como se ele fosse apenas uma peça imutável daquele plano.</p>
+
+    <p>As memórias felizes foram trazidas para o confronto. Não se tratava de apagar o que Blood Soldier havia feito, nem de declarar que as acusações contra o presidente tinham sido resolvidas. Apogeu colocou diante dele lembranças que despertaram empatia, interferindo na distância emocional que sustentava sua atuação como mercenário.</p>
+
+    <p>A reação de Blood Soldier foi de confusão. A empatia apareceu, mas não organizou imediatamente todas as suas convicções. A mudança não se converteu em uma resposta simples, nem em uma rendição clara. O soldado passou a sentir algo que entrava em conflito com a postura que mantinha durante a operação, e essa contradição impediu que o combate seguisse para uma conclusão definitiva.</p>
+
+    <p>Apogeu não precisou transformar o confronto em uma execução para mostrar a força da abordagem. As memórias felizes serviram como ponto de contato com a capacidade de Blood Soldier de sentir empatia. O mercenário ficou confuso, dividido entre o que a missão exigia e o que agora conseguia sentir. O embate deixou de ser apenas uma disputa física ou tática; tornou-se um confronto entre a operação em andamento e uma resposta emocional que Blood Soldier não conseguia organizar.</p>
+
+    <p>O passado do soldado não foi completamente explicado, e as lembranças não foram convertidas em uma biografia que resolvesse todas as lacunas. O que ocorreu foi mais específico: Apogeu trouxe suas memórias felizes para ele, despertando empatia. A mudança foi suficiente para interromper a certeza com que Blood Soldier se colocava diante do adversário, mas não para produzir uma conclusão absoluta sobre a conspiração.</p>
+
+    <p>O presidente continuava cercado por acusações. Os panfletos não se tornavam verdade só porque haviam sido espalhados, e tampouco desapareciam por causa da luta entre Apogeu e Blood Soldier. A questão política permanecia distinta do confronto. O que mudara era a relação entre os dois combatentes e a maneira como Blood Soldier conseguia encarar a situação depois de entrar em contato com aquelas lembranças.</p>
+
+    <p>A empatia não transformou Blood Soldier instantaneamente em alguém sem conflitos. Sua confusão era parte do resultado: ele havia sido levado a sentir algo que não se encaixava de forma simples na missão. Apogeu não apagou sua vontade nem tomou todas as decisões por ele. Trouxe as memórias felizes, provocou uma reação emocional e deixou que a contradição aparecesse no próprio soldado.</p>
+
+    <p>O combate chegou ao empate. Nenhum dos dois conseguiu converter o encontro em uma vitória definitiva. Blood Soldier continuava confuso, e Apogeu não precisava destruir o adversário para que a empatia despertada tivesse significado. O empate preservou a tensão e impediu que o episódio fosse confundido com uma resolução completa da trama política.</p>
+
+    <p>A luta também se conectava à recuperação de Apogeu. Depois de ser curado do Grudge Virus por Lucky, retornar como o Mew azul e passar a ser adotado junto de Moon!Frost!, Apogeu encontrava um conflito no qual a resposta não consistia em repetir a mesma lógica de domínio. Ele enfrentava Blood Soldier trazendo memórias felizes, e o resultado mostrava que a força podia abrir espaço para a empatia sem garantir uma conclusão imediata.</p>
+
+    <p>Blood Soldier não saiu daquele confronto com todas as respostas. Apogeu tampouco encerrou a conspiração. O que ficou estabelecido foi o empate: o soldado ganhou empatia, ficou confuso, e nenhum dos dois alcançou uma vitória decisiva. A trama de Nexus continuava aberta, enquanto a mudança interna de Blood Soldier permanecia como uma consequência importante do encontro.</p>
+  </section>
+
+  <!-- CAPÍTULO VIII -->
+  <section id="cap8" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">Capítulo VIII</p>
+      <h2>Quatro Golpes de Ornstein</h2>
+    </div>
+
+    <p>O torneio continuou, e Lucky voltou a ser colocado diante de uma situação perigosa. Dessa vez, a ameaça não era apenas o risco de uma transformação ou o confronto com um adversário comum. Lucky foi possuído novamente, agora durante a luta contra Ornstein. A posse tornou o duelo mais imprevisível, pois a presença que agia através dele carregava uma ameaça específica: a Deadblade.</p>
+
+    <p>A regra da arma era clara e aterradora. Se a Deadblade acertasse cinco golpes, o inimigo morreria. Não era necessário imaginar uma consequência além dessa condição; bastava reconhecer o perigo de cada acerto. O limite de cinco golpes transformava a luta em uma contagem silenciosa, na qual cada impacto aproximava o adversário de uma fronteira fatal.</p>
+
+    <p>Ornstein enfrentou Lucky enquanto a posse fazia o combate escapar da normalidade do torneio. O confronto foi acirrado. A Deadblade acertou quatro golpes em Ornstein — um a menos do que o número necessário para provocar a morte. Cada golpe carregava a ameaça do seguinte, e a luta não permitia que a proximidade do limite fosse ignorada.</p>
+
+    <p>Quatro golpes. A contagem permanecia abaixo do quinto, mas a diferença era estreita demais para ser tratada como segurança. Ornstein havia suportado uma sequência perigosa, e a luta prosseguia sem que o desfecho fosse decidido por um golpe final. O torneio colocava diante dos participantes um risco real, mesmo sem transformar a regra da Deadblade em uma morte inevitável.</p>
+
+    <p>Lucky não estava plenamente livre para conduzir a luta por conta própria. A posse interferia no confronto e fazia com que o adversário precisasse lidar não apenas com os movimentos de Lucky, mas com a ameaça associada à arma. A situação ecoava o perigo já visto quando Chara havia possuído Lucky e quase matado Robert. A repetição mostrava que a posse ainda era uma ameaça recorrente, não um incidente completamente encerrado.</p>
+
+    <p>Ornstein resistiu aos quatro golpes. O quinto não aconteceu como conclusão fatal do duelo. A luta permaneceu acirrada até terminar em empate, sem que ninguém morresse. A regra da Deadblade continuava sendo importante justamente porque o combate chegou muito perto de seu limite sem ultrapassá-lo.</p>
+
+    <p>O empate não diminuía a gravidade do ocorrido. Quatro golpes de uma arma cujo quinto golpe mataria o adversário eram suficientes para fazer daquela luta uma das situações mais tensas do torneio. A sobrevivência de Ornstein não significava que o perigo fosse imaginário; significava que a condição fatal não se completou.</p>
+
+    <p>Para Lucky, a repetição da posse tornava mais urgente o conflito que ainda existia em torno de sua própria vontade. O espírito de luz havia derrotado B!Vasto Lorde! com um único golpe e depois ajudado na cura de Apogeu, mas sua força não impedia que outra presença tentasse controlá-lo. A luz continuava ligada a feitos importantes, enquanto a posse mostrava uma vulnerabilidade que não podia ser ignorada.</p>
+
+    <p>O torneio não terminou com a morte de Ornstein. O resultado foi empate, e os quatro golpes permaneceram como o limite atingido durante a luta. A Deadblade não completou a sequência de cinco acertos necessária para matar o inimigo. A ameaça ficou evidente sem que o acontecimento fosse transformado em uma tragédia irreversível.</p>
+
+    <p>A luta também deixou o grupo diante de uma pergunta prática: como continuar participando do torneio quando Lucky podia ser possuído de novo? O episódio não fornecia uma solução definitiva. Ele estabelecia que a ameaça persistia, que a Deadblade podia tornar cada golpe decisivo e que a luta contra Ornstein terminou sem mortes.</p>
+
+    <p>A contagem ficou em quatro. Ornstein sobreviveu, Lucky permaneceu no centro do conflito ligado à posse, e o torneio continuou sem um vencedor definitivo naquele confronto. O empate não encerrou a ameaça de Chara, mas manteve aberta a possibilidade de enfrentar o que ainda estava por vir.</p>
+  </section>
+
+  <!-- CAPÍTULO IX -->
+  <section id="cap9" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">Capítulo IX</p>
+      <h2>O Eclipse Ainda Não Chegou</h2>
+    </div>
+
+    <p>O eclipse se aproximava como uma possibilidade que todos precisavam levar em conta, mas Lucky ainda não seria possuído por Chara naquele momento. A ameaça existia, e os acontecimentos anteriores — a posse que quase levou Robert à morte e a luta contra Ornstein, na qual a Deadblade acertou quatro golpes — continuavam pesando sobre o grupo. Ainda assim, o eclipse não havia chegado ao ponto em que aquela nova posse aconteceria.</p>
+
+    <p>Antes disso, houve um conflito interno no sonho de Lucky. O adversário era Hollow!One!Frost!, e a disputa acontecia dentro do espaço onírico, onde a presença de Hollow podia confrontar Lucky sem que o eclipse precisasse começar. O encontro tinha como referência Jekyll e Hyde: a tensão entre faces diferentes de uma mesma existência, a inquietação de não saber se o que aparece é apenas uma máscara ou uma parte que já estava ali.</p>
+
+    <p>O sonho tornou-se o lugar desse conflito. Lucky, espírito de luz, foi confrontado por Hollow!One!Frost!, uma entidade ligada à representação dos sentimentos negativos e à alimentação por pensamentos negativos. Sua origem estava associada ao primeiro Frost que resetou a timeline após a morte de James the Ninetales. Desse reset surgiu uma nova linha do tempo que deu origem ao Grudge Virus, com Hollow!One!Frost! como representação dos sentimentos negativos.</p>
+
+    <p>A presença de Hollow no sonho não significava que a posse de Chara já tivesse acontecido de novo. Eram acontecimentos distintos. Chara continuava sendo uma ameaça para o eclipse, mas naquele momento a disputa era interna e onírica, entre Lucky e Hollow!One!Frost!. A separação era importante para que a sequência não confundisse o conflito do sonho com o evento que ainda estava por vir.</p>
+
+    <p>A referência a Jekyll e Hyde dava ao confronto uma atmosfera de divisão e confronto interior. O sonho não precisava transformar essa referência em uma explicação além do que acontecia: Lucky enfrentava Hollow!One!Frost! dentro do próprio sonho, e a tensão estava na presença de uma entidade que personificava negatividade. O espaço onírico permitia que o conflito se manifestasse como uma disputa interna, em vez de um duelo comum no cenário do torneio.</p>
+
+    <p>Hollow!One!Frost! não permaneceu ali até o fim. Ao final do conflito, Hollow saiu. A retirada encerrou aquele confronto específico, mas não significava que o eclipse já tivesse ocorrido ou que a ameaça de Chara estivesse resolvida definitivamente. O evento futuro continuava pendente, e a saída de Hollow apenas fechava a disputa que acontecera no sonho.</p>
+
+    <p>Apogeu conseguiu subornar Chara com chocolate — por enquanto. A solução era temporária e não devia ser confundida com uma vitória definitiva sobre a ameaça. O chocolate adiava o problema, dando ao grupo um intervalo, mas não garantia que Chara jamais tentaria possuir Lucky novamente. A expressão “por enquanto” era parte essencial do resultado.</p>
+
+    <p>Moon!Frost! ficou confusa diante dos acontecimentos. Entre a presença de Hollow no sonho de Lucky, a ameaça de Chara no eclipse e a tentativa temporária de manter Chara afastada com chocolate, a situação não oferecia uma resposta simples. A confusão de Moon!Frost! permanecia sem ser resolvida por uma explicação definitiva.</p>
+
+    <p>O que estava estabelecido ao fim do arco era uma pausa, não uma solução final. Hollow!One!Frost! havia saído do sonho depois do conflito com Lucky; Apogeu havia conseguido subornar Chara com chocolate por enquanto; Moon!Frost! estava confusa; e a posse de Lucky por Chara durante o eclipse ainda não tinha acontecido. A ameaça continuava no horizonte.</p>
+
+    <p>A temporada terminava nesse ponto de incerteza. O grupo tinha atravessado a derrota de B!Vasto Lorde!, o abraço que acalmou B!Frost!, o casamento de Akira e B!Frost!, o confronto onírico com Hydra!Frost!, a cura de Apogeu, o treinamento romântico que se tornou perigoso, o empate com Blood Soldier e a luta de Lucky contra Ornstein. Mas a ameaça de Chara não estava encerrada, e a confusão de Moon!Frost! continuava sem resposta.</p>
+
+    <p>O eclipse ainda não havia trazido a nova posse. Hollow havia saído do sonho. Chara estava temporariamente subornado. E a primeira temporada terminava com o conflito suspenso, à espera do que viria depois.</p>
+
+    <div class="fim">
+      <p>— FIM DA PRIMEIRA TEMPORADA —</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><span>NEXUS</span> — A Nova Saga de B!Frost! · Temporada 1 · Edição Expandida</p>
+  <p>Depois de A New Dawn</p>
+</footer>
+
+</body>
+</html>
